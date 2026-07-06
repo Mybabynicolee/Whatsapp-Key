@@ -1,8 +1,8 @@
 <div align="center">
 
-<img width="100%" alt="header" src="https://capsule-render.vercel.app/api?type=waving&height=210&text=WhatsApp%20Key%20Bot&fontAlign=50&fontAlignY=36&fontSize=56&desc=Auto%20Search%20%7C%20OCR%20%7C%20ADB%20%7C%20Screenshot%20%7C%20CLI&descAlign=50&descAlignY=58"/>
+<img width="100%" alt="header" src="https://capsule-render.vercel.app/api?type=waving&height=210&text=WhatsApp%20Key%20Bot&fontAlign=50&fontAlignY=36&fontSize=56&desc=Auto%20Search%20%7C%20OCR%20%7[...]" />
 
-<img alt="typing" src="https://readme-typing-svg.demolab.com?font=Inter&size=18&duration=3000&pause=650&center=true&vCenter=true&width=900&lines=Auto+Search+WhatsApp+Username+Key+via+ADB;OCR-Powered+Key+Detection+%7C+EasyOCR+%2B+OpenCV;Search+Specific+Key+%7C+Multiple+Keys+%7C+All+Twins;Auto+Tap+Generate+and+Save+via+ADB+Input;ADB+Auto-Download+%7C+No+Manual+Setup+Needed"/>
+<img alt="typing" src="https://readme-typing-svg.demolab.com?font=Inter&size=18&duration=3000&pause=650&center=true&vCenter=true&width=900&lines=Auto+Search+WhatsApp+Username+Key+via+ADB;OCR-Powere[...]" />
 
 <p>
   <img alt="python" src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white"/>
@@ -13,7 +13,7 @@
 
 <p>
   <b>WhatsApp Key Bot</b> is a CLI automation tool that searches for a specific WhatsApp username key using ADB and OCR.<br/>
-  It captures the phone screen via ADB, reads the displayed 4-digit key using EasyOCR, and automatically taps Generate until the target key appears. When found, it taps Save and optionally saves a screenshot. ADB platform tools are downloaded automatically if not present.<br/>
+  It captures the phone screen via ADB, reads the displayed 4-digit key using EasyOCR, and automatically taps Generate until the target key appears. When found, it taps Save and optionally saves a[...]
   Built and distributed by <b>Yuurisandesu</b>.
 </p>
 
@@ -111,22 +111,22 @@ If you run `python bot.py` without any arguments, the bot will print a reminder 
 ## Features
 
 ### ADB Auto Setup
-On first run, the bot checks if ADB is present in the `platform-tools/` folder. If not found, it automatically downloads the official Google platform tools for the current operating system: Windows, Linux, or macOS. The download progress is shown in the terminal with a progress bar. After downloading, the archive is extracted and the zip is removed. No manual ADB installation is needed.
+On first run, the bot checks if ADB is present in the `platform-tools/` folder. If not found, it automatically downloads the official Google platform tools for the current operating system: Windo[...]
 
 ### Screen Capture via ADB
-Each iteration captures the phone screen by running `screencap` on the device via ADB shell and pulling the resulting PNG to the local machine. The captured image is read with OpenCV and passed to the OCR pipeline. The temporary file is cleaned up from both the device and local storage after the search is complete.
+Each iteration captures the phone screen by running `screencap` on the device via ADB shell and pulling the resulting PNG to the local machine. The captured image is read with OpenCV and passed t[...]
 
 ### OCR Key Detection
-The key is read from the center region of the captured screen using EasyOCR with an English digit-only allowlist. The image is cropped to the area where the 4-digit key appears (vertically between 20% and 50%, horizontally between 5% and 95% of the frame) before OCR is applied. Only results with a confidence above 0.5 and exactly 4 digits are accepted.
+The key is read from the center region of the captured screen using EasyOCR with an English digit-only allowlist. The image is cropped to the area where the 4-digit key appears (vertically betwee[...]
 
 ### Auto Button Detection
-The Generate button and the Save button are located by running full-frame OCR and matching the button labels by text. If text matching fails, a fallback uses contour detection in a defined vertical band of the screen to find tappable button shapes. Button positions are cached after the first successful detection to avoid re-running OCR on every iteration.
+The Generate button and the Save button are located by running full-frame OCR and matching the button labels by text. If text matching fails, a fallback uses contour detection in a defined vertic[...]
 
 ### Auto Tap via ADB
 All taps (Generate and Save) are sent to the device via `adb shell input tap X Y` using the coordinates returned by the button detection step. No touch emulation library is needed.
 
 ### Specific Key Search
-Pass one or more 4-digit keys as flags (for example `--7777` or `--1234 --5678`). The bot generates keys continuously until one of the targets appears on screen. The search stops immediately on the first match and saves it.
+Pass one or more 4-digit keys as flags (for example `--7777` or `--1234 --5678`). The bot generates keys continuously until one of the targets appears on screen. The search stops immediately on t[...]
 
 ### Twin Key Search
 The `--twin` flag expands to all 10 repeated-digit keys at once: `0000`, `1111`, `2222`, and so on up to `9999`. The bot stops on whichever twin key appears first.
@@ -135,7 +135,7 @@ The `--twin` flag expands to all 10 repeated-digit keys at once: `0000`, `1111`,
 When `--ss` is passed, the bot saves a screenshot of the screen at the moment the target key is found to the `screenshots/` folder with the key value as the filename.
 
 ### Threaded Search Loop
-The search runs in a background daemon thread. The main thread waits and joins it, which allows clean interruption via `Ctrl+C`. Pressing `Ctrl+C` sets a stop event that terminates the search loop gracefully without leaving dangling ADB processes.
+The search runs in a background daemon thread. The main thread waits and joins it, which allows clean interruption via `Ctrl+C`. Pressing `Ctrl+C` sets a stop event that terminates the search loo[...]
 
 ---
 
@@ -184,6 +184,9 @@ Whatsapp-Key/
 ## Disclaimer
 
 This tool is built for educational and technical exploration purposes. Use it wisely and at your own responsibility.
+
+
+Terima kasih kepada pemilik repo asli: @Yuurichan-N3
 
 ---
 
