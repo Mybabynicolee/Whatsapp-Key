@@ -13,6 +13,12 @@ def info(msg):
     print(f"{BOLD}{G}{msg}{RESET}")
 
 
+def info_inline(msg):
+    # Print message in-place on the same terminal line, clearing the line first
+    # Uses carriage return + ANSI escape to clear the line then prints without newline
+    print(f"\r\033[K{BOLD}{G}{msg}{RESET}", end="", flush=True)
+
+
 def warn(msg):
     print(f"{BOLD}{Y}{msg}{RESET}")
 
