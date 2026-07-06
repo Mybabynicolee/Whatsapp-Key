@@ -2,6 +2,7 @@ import os
 import sys
 import zipfile
 import urllib.request
+import stat
 from utils.config.settings import ADB_DIR, ADB_URL_WIN, ADB_URL_LIN, ADB_URL_MAC
 from utils import logger
 
@@ -56,6 +57,16 @@ def ensure_adb(base_dir: str) -> str:
 
     with zipfile.ZipFile(zip_path, "r") as z:
         z.extractall(base_dir)
+
+    # Ensure adb binary is executable on macOS / Linux
+    try:
+        adb_path = get_adb_path(base_dir)
+        if os.name != "nt" and os.path.exists(adb_path):
+            st = os.stat(adb_path)
+            os.chmod(adb_path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+            logger.info("Set executable permission on adb binary")
+    except Exception as e:
+        logger.warn(f"Failed to set executable permission on adb: {e}")
 
     os.remove(zip_path)
     logger.info("ADB Setup Finished Successfully")
