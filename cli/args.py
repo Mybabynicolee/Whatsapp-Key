@@ -19,12 +19,15 @@ def parse() -> dict:
 
     targets = []
     save_ss = False
+    inline = True
 
     for arg in argv:
         if arg == "--ss":
             save_ss = True
         elif arg == "--twin":
             targets += [str(i) * 4 for i in range(10)]
+        elif arg == "--no-inline":
+            inline = False
         elif arg.startswith("--") and arg[2:].isdigit() and len(arg[2:]) == 4:
             targets.append(arg[2:])
 
@@ -37,4 +40,5 @@ def parse() -> dict:
     return {
         "targets": targets,
         "save_ss": save_ss,
+        "inline": inline,
     }
