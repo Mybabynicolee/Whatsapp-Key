@@ -31,9 +31,13 @@ def search_loop(targets: set, save_ss: bool, result_holder: list, stop_event):
                     logger.warn("Generate Button Not Found In Frame")
             continue
 
-        logger.info(f"Key Detected On Screen {key}")
+        # print detected key inline (replaces previous line)
+        logger.info_inline(f"Key Detected: {key}")
 
         if key in targets:
+            # ensure we end inline output and go to a fresh line for final messages
+            print()
+
             stop_event.set()
             result_holder.append(key)
             if save_ss:
@@ -44,6 +48,7 @@ def search_loop(targets: set, save_ss: bool, result_holder: list, stop_event):
                 tap(*_btn_save)
             else:
                 logger.warn("Save Button Not Found, Skipping Tap")
+
             logger.info(f"Target Key Found And Saved {key}")
             cleanup()
             return
